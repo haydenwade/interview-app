@@ -5,11 +5,12 @@ const Joi = require('joi');
 
 const server = Hapi.server({
     host: 'localhost',
-    port: 3001
+    port: 3000
 });
 
 //routes
-server.route(require('./routes/getEarthquakeDetailsRoute'));
+server.route(require('./src/routes/getEarthquakeDetailsRoute'));
+server.route(require('./src/routes/getEarthquakesRoute'));
 
 const init = async () => {
     await server.start();

@@ -11,12 +11,14 @@ const getEarthQuakeDetailsRoute = {
             }
         }
     },
-    handler: function (request, h) {
-        return usgsRepo.getEarthQuakeDetails(request.params.id).then((res)=>{
+    handler: async function (request, h) {
+        try{
+            const res = await usgsRepo.getEarthquakeDetails(request.params.id)
             return h.response(res).code(200);
-        }).catch((err)=>{
+        }
+        catch(err){
             return h.response(`An error occured: ${JSON.stringify(err)}`).code(500);
-        });
+        };
     }
 };
 module.exports = getEarthQuakeDetailsRoute;
